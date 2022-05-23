@@ -187,7 +187,7 @@ module.exports = function (webpackEnv) {
   };
 
   return {
-    target: "node",
+    target: ['browserslist'],
     // Webpack noise constrained to errors and warnings
     stats: 'errors-warnings',
     mode: isEnvProduction ? 'production' : isEnvDevelopment && 'development',
@@ -335,6 +335,10 @@ module.exports = function (webpackEnv) {
           babelRuntimeRegenerator,
         ]),
       ],
+      fallback: {
+        "stream": require.resolve("stream-browserify"),
+        "buffer": require.resolve("buffer")
+      }
     },
     module: {
       strictExportPresence: true,

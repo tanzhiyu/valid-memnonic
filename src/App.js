@@ -1,22 +1,42 @@
+/*
+ * @Author: tanzhiyu
+ * @Date: 2022-05-23 16:46:33
+ * @LastEditors: tanzhiyu
+ * @LastEditTime: 2022-05-23 18:06:49
+ */
 import logo from './logo.svg';
 import './App.css';
-
+import { useState } from 'react';
+import * as bip39 from 'bip39'
 function App() {
+  const [value, setValue] = useState("")
+  const onChange = (v) => {
+    setValue(v.target.value)
+  }
+  const handleValid = ( ) => {
+
+    const keyword = value.split(" ").filter(item => Number.isNaN(Number(item))).join(" ")
+    console.log(JSON.stringify(keyword))
+
+    fetch("http://localhost:4000/validate?keyword=" + keyword).then(res => res.json()).then(data => {
+      console.log(data)
+      if (data.code === 0 ) {
+        const valid = data.valid
+        if (valid) {
+          alert("有效")
+        } else {
+          alert("Incorrect Mnemonic Phrase")
+        }
+      }
+    })
+
+
+  }
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+       <input style={{width : 1220, height: 44, fontSize: 20}} type="textarea" value={value} onChange={onChange} />
+       <button style={{marginTop: 20, width: 60, height: 44}} onClick={handleValid}>验证</button>
       </header>
     </div>
   );
