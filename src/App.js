@@ -2,7 +2,7 @@
  * @Author: tanzhiyu
  * @Date: 2022-05-23 16:46:33
  * @LastEditors: tanzhiyu
- * @LastEditTime: 2022-05-23 18:06:49
+ * @LastEditTime: 2022-05-26 23:45:58
  */
 import logo from './logo.svg';
 import './App.css';
@@ -16,9 +16,8 @@ function App() {
   const handleValid = ( ) => {
 
     const keyword = value.split(" ").filter(item => Number.isNaN(Number(item))).join(" ")
-    console.log(JSON.stringify(keyword))
 
-    fetch("http://localhost:4000/validate?keyword=" + keyword).then(res => res.json()).then(data => {
+    fetch("/validate?keyword=" + keyword).then(res => res.json()).then(data => {
       console.log(data)
       if (data.code === 0 ) {
         const valid = data.valid

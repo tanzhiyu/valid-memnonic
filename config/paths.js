@@ -1,3 +1,9 @@
+/*
+ * @Author: tanzhiyu
+ * @Date: 2022-05-23 16:59:40
+ * @LastEditors: tanzhiyu
+ * @LastEditTime: 2022-05-26 23:41:58
+ */
 'use strict';
 
 const path = require('path');
@@ -21,7 +27,7 @@ const publicUrlOrPath = getPublicUrlOrPath(
   process.env.PUBLIC_URL
 );
 
-const buildPath = process.env.BUILD_PATH || 'build';
+const buildPath = process.env.BUILD_PATH || './server/public';
 
 const moduleFileExtensions = [
   'web.mjs',

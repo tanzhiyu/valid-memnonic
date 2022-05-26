@@ -2,7 +2,7 @@
  * @Author: tanzhiyu
  * @Date: 2022-05-23 17:41:52
  * @LastEditors: tanzhiyu
- * @LastEditTime: 2022-05-23 21:08:18
+ * @LastEditTime: 2022-05-26 23:42:13
  */
 var createError = require('http-errors');
 var express = require('express');
@@ -45,5 +45,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+app.use(express.static('public'))
 
 module.exports = app;
